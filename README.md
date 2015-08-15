@@ -45,12 +45,12 @@ RAM: 509016K total, 346780K free, 14616K buffers, 70652K cached,
 1468K shmem, 14580K slab
 ```
 
-Run ./procranc -h to see the help screen for more options.
+Run "./procranc -h" to see the help screen for more options.
 
 # Theory
 
-If you are intereted in the  background,
-I have written a [blog post on smaps and Pss]([http://2net.co.uk/tutorial/procrank)
+If you are intereted in the  background, I have written a blog post on smaps
+and Pss at http://2net.co.uk/tutorial/procrank
 
 # Where the source files came from
 
