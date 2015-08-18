@@ -21,8 +21,12 @@ PROGRAM = procrank
 # LOCAL_CFLAGS := -Wall -Wextra -Wformat=2 -Werror
 LOCAL_CFLAGS := -Wall
 
-$(PROGRAM): $(PROGRAM).c
+$(PROGRAM): $(PROGRAM).c libpagemap/libpagemap.a
 	$(CROSS_COMPILE)gcc $(LOCAL_CFLAGS) $(PROGRAM).c -Ilibpagemap/include -Llibpagemap -lpagemap -o procrank
+
+libpagemap/libpagemap.a:
+	make -C libpagemap
 
 clean:
 	rm -f $(PROGRAM)
+	make -C libpagemap clean
