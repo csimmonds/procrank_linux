@@ -13,18 +13,12 @@ on any architecture so long as the kernel has pagemap.
 For a native build:
 
 ```
-$ cd libpagemap
-$ make
-$ cd ..
 $ make
 ```
 
 To cross compile:
 
 ```
-$ cd libpagemap
-$ make CROSS_COMPILE=<your cross compile prefix>
-$ cd ..
 $ make CROSS_COMPILE=<your cross compile prefix>
 ```
 
