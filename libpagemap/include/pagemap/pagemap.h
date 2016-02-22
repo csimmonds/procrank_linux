@@ -19,10 +19,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include <sys/cdefs.h>
 #include <sys/types.h>
-
-__BEGIN_DECLS
 
 typedef struct pm_memusage pm_memusage_t;
 
@@ -200,7 +197,5 @@ int pm_map_usage_flags(pm_map_t *map, pm_memusage_t *usage_out,
 
 /* Get the working set of this map alone. */
 int pm_map_workingset(pm_map_t *map, pm_memusage_t *ws_out);
-
-__END_DECLS
 
 #endif
