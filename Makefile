@@ -1,28 +1,17 @@
 #
-# Copyright (C) 2015 by Chris Simmonds <chris@2net.co.uk>
+# Copyright (C) 2015,2018 by Chris Simmonds <chris@2net.co.uk>
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-#
+# If cross-compiling, CC must point to your cross compiler, for example:
+# make CC=arm-linux-gnueabihf-gcc
 
+
+DESTDIR ?= /
+BINDIR ?= usr/bin
+LOCAL_CFLAGS ?= -Wall
 PROGRAM = procrank
 
-# LOCAL_CFLAGS := -Wall -Wextra -Wformat=2 -Werror
-LOCAL_CFLAGS := -Wall
-
 $(PROGRAM): $(PROGRAM).c libpagemap/libpagemap.a
-	$(CROSS_COMPILE)gcc $(LOCAL_CFLAGS) $(PROGRAM).c -Ilibpagemap/include -Llibpagemap -lpagemap -o procrank
+	$(CC) $(CFLAGS) $(LOCAL_CFLAGS) $(LDFLAGS) $(PROGRAM).c -Ilibpagemap/include -Llibpagemap -lpagemap -o $@
 
 libpagemap/libpagemap.a:
 	make -C libpagemap
@@ -30,3 +19,7 @@ libpagemap/libpagemap.a:
 clean:
 	rm -f $(PROGRAM)
 	make -C libpagemap clean
+
+install:
+	install -d $(DESTDIR)/$(BINDIR)
+	install -m 0755 $(PROGRAM) $(DESTDIR)/$(BINDIR)
